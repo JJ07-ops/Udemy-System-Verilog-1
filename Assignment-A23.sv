@@ -1,4 +1,4 @@
-//Assignment agenda
+//Assignment agenda:
 //Write a code to generate a 9MHz square waveform for the signal sclk. 
 //Assume timescale with 1nsec time-unit and 3 digit precision.
 
