@@ -4,7 +4,7 @@
 
 `timescale 1ns/1ps
 
-module tb(); //period: 40 nsec and duty cycle: 0.4
+module tb(); 
   
   //declare clock variable
   reg sclk = 0;
