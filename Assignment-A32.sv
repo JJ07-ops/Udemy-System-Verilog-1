@@ -11,7 +11,7 @@ Create an array capable of storing 10 elements of an unsigned integer. Initializ
 module tb(); 
   
   //initialize array
-  int unsigned array[10] = {0,1,4,9,16,25,36,49,64,81};
+  int unsigned array[10] = '{0,1,4,9,16,25,36,49,64,81};
   
   //main part of code
   initial begin;
