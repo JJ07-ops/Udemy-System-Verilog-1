@@ -4,8 +4,6 @@ Create two arrays of reg type capable of storing 15 elements. Use $urandom funct
 
 */
 
-`timescale 1ns/1ps
-
 module tb(); 
   
   //create 2 arrays
