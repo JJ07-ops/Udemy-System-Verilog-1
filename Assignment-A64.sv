@@ -1,6 +1,7 @@
 /*Assignment agenda:
 
-Take the help of pseudo-random number generator to generate values for wr and rst signal. rst should be low for apprx. 30% of time whie wr should be high for apprx. 50% of time. Verify your code for 20 iterations by sending values of both wr and rst on a console. Generator code is mentioned in the Instruction tab.
+Take the help of pseudo-random number generator to generate values for wr and rst signal. rst should be low for apprx. 30% of time whie wr should be high for apprx. 50% of time. 
+Verify your code for 20 iterations by sending values of both wr and rst on a console. Generator code is mentioned in the Instruction tab.
 
 */
 
