@@ -1,6 +1,7 @@
 /*Assignment agenda:
 
-Assume generator class consists of three 8-bit data members (x,y, and z). Write a code to generate 20 random values for all the data members at an interval of 20 ns. Random values for all data members should range from 0 to 50.
+Assume generator class consists of three 8-bit data members (x,y, and z). Write a code to generate 20 random values for all the data members at an interval of 20 ns. 
+Random values for all data members should range from 0 to 50.
 
 */
 
