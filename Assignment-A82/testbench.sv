@@ -4,6 +4,8 @@ Create Monitor and Scoreboard Code for Synchronous 4-bit Multiplier.
 Stimulus is generated in Testbench top so do not add Transaction, Generator, or Driver Code. 
 Also, add the Scoreboard model to compare the response with an expected result.
 
+Student's note: 21 values printed including the initial default value and 20 random values.
+
 */
 
 `timescale 1ns/1ns
