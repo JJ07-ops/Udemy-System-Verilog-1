@@ -4,8 +4,6 @@ Create Monitor and Scoreboard Code for Synchronous 4-bit Multiplier.
 Stimulus is generated in Testbench top so do not add Transaction, Generator, or Driver Code. 
 Also, add the Scoreboard model to compare the response with an expected result.
 
-Student's note: 21 values printed including the initial default value and 20 random values.
-
 */
 
 `timescale 1ns/1ns
@@ -22,17 +20,17 @@ endinterface
 class monitor;
   
   //call variables for data members
-  bit a,b;
+  bit [3:0] a,b;
   bit [7:0] mul;
   
   //all variables for classes
-  mailbox #(bit) mbxA;
-  mailbox #(bit) mbxB;
+  mailbox #(bit [3:0]) mbxA;
+  mailbox #(bit [3:0]) mbxB;
   mailbox #(bit [7:0])mbxMul;
   virtual top_if tif;
   
   //custom constructor
-  function new(mailbox #(bit) mbxA, mbxB, mailbox #(bit [7:0]) mbxMul);
+  function new(mailbox #(bit [3:0]) mbxA, mbxB, mailbox #(bit [7:0]) mbxMul);
     this.mbxA = mbxA;
     this.mbxB = mbxB;
     this.mbxMul = mbxMul;
@@ -50,7 +48,7 @@ class monitor;
       mbxMul.put(mul);
       $display("-------------------------------------");
       $display("[MON] : DATA SENT : ");
-      $display("a : %0d \t b : %0d \t c : %0d",a,b,mul);
+      $display("a : %0d  b : %0d  mul : %0d",a,b,mul);
       
     end
   endtask
@@ -63,17 +61,17 @@ endclass
 class scoreboard;
   
   //call variables for data members
-  bit a,b;
+  bit [3:0] a,b;
   bit [7:0] mul;
   
   //call variables for classes
-  mailbox #(bit) mbxA;
-  mailbox #(bit) mbxB;
+  mailbox #(bit [3:0]) mbxA;
+  mailbox #(bit [3:0]) mbxB;
   mailbox #(bit [7:0])mbxMul;
   virtual top_if tif;
   
   //custom constructor
-  function new(mailbox #(bit) mbxA, mbxB, mailbox #(bit [7:0]) mbxMul);
+  function new(mailbox #(bit [3:0]) mbxA, mbxB, mailbox #(bit [7:0]) mbxMul);
     this.mbxA = mbxA;
     this.mbxB = mbxB;
     this.mbxMul = mbxMul;
@@ -86,10 +84,20 @@ class scoreboard;
       mbxB.get(b);
       mbxMul.get(mul);
       $display("[SCO] : DATA RCVD : ");
-      $display("a : %0d \t b : %0d \t c : %0d",a,b,mul);  
+      $display("a : %0d  b : %0d  mul : %0d",a,b,mul);  
+      compare(a,b,mul);
       $display("-------------------------------------");
       #20;
     end
+  endtask
+  
+  
+  //create scoreboard model
+  task compare(input a,b,mul);
+    if(mul == (a * b))
+      $display("[SCO] : RESULTS MATCHED");
+    else
+      $error("[SCO] : RESULTS MISMATCHED");
   endtask
   
 endclass
@@ -98,8 +106,8 @@ endclass
 module tb;
   
   //call the variables
-  mailbox #(bit) mbxA;
-  mailbox #(bit) mbxB;
+  mailbox #(bit [3:0]) mbxA;
+  mailbox #(bit [3:0]) mbxB;
   mailbox #(bit [7:0])mbxMul;
   top_if vif();
   monitor mon;
@@ -123,8 +131,6 @@ module tb;
     sco = new(mbxA,mbxB,mbxMul);
     mon.tif = vif;
   end
-  
-  
   
   //randomization for interface values
   initial begin
